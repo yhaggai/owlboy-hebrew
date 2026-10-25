@@ -88,7 +88,12 @@ def build(game,out,allow_partial=False):
  for i,row in enumerate(master):row.insert(len(row)-2,'Hebrew' if i==0 else 'he' if i==1 else '')
  buffer=io.StringIO(newline='');csv.writer(buffer).writerows(master);put('Data/Localizations/Translations.csv',buffer.getvalue().encode())
  put('Data/Localizations/he/speechBubbleConfig.ini',b'[Config]\nLineSpacing=15\n')
- flag=Image.new('RGBA',(24,16),'white');d=ImageDraw.Draw(flag);d.rectangle((0,2,23,4),fill='#2465af');d.rectangle((0,11,23,13),fill='#2465af');d.polygon([(12,5),(8,10),(16,10)],outline='#2465af');d.polygon([(12,11),(8,6),(16,6)],outline='#2465af');put('Data/Localizations/Flags/he.png',png(flag))
+ # The language menu samples a fixed 142x89 rectangle, matching stock flags.
+ flag=Image.new('RGBA',(142,89),'white');d=ImageDraw.Draw(flag);blue='#2465af'
+ d.rectangle((0,11,141,22),fill=blue);d.rectangle((0,66,141,77),fill=blue)
+ d.line([(71,28),(52,59),(90,59),(71,28)],fill=blue,width=3)
+ d.line([(71,63),(52,32),(90,32),(71,63)],fill=blue,width=3)
+ put('Data/Localizations/Flags/he.png',png(flag))
  for filename,text in TITLES.items():put('Data/Localizations/he/Titles/'+filename,title(text))
  layout_path=out/'layouts.tsv';count=write_layouts([r[3] for r in source[2:]],layout_path);put('Data/Localizations/he/layouts.tsv',layout_path.read_bytes())
  compile_runtime(game,out)
