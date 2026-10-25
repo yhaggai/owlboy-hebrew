@@ -6,7 +6,7 @@ from build import catalog,wrap
 from layout import layout,plain,write_layouts
 class CatalogTests(unittest.TestCase):
  def test_complete_and_parseable(self):
-  contract=json.loads((ROOT/'catalog-contract.json').read_text());texts=catalog()
+  contract=json.loads((ROOT/'catalog-contract.json').read_text(encoding='utf-8'));texts=catalog()
   self.assertEqual(len(texts),4537);self.assertEqual(set(texts),set(contract))
   for key,text in texts.items():
    with self.subTest(id=key):

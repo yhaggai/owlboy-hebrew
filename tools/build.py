@@ -52,7 +52,7 @@ def build(game,out,allow_partial=False):
  if out==game or game in out.parents:raise ValueError('Build output must be outside the game')
  loc=game/'Data/Localizations'
  if (loc/'he.csv').exists():raise ValueError('Hebrew is already installed. Uninstall before building, or supply pristine local inputs.')
- compatibility=json.loads((ROOT/'compatibility.json').read_text())
+ compatibility=json.loads((ROOT/'compatibility.json').read_text(encoding='utf-8'))
  if digest((game/'Owlboy.exe').read_bytes()) not in compatibility['executable_sha256']:raise ValueError('Unsupported executable edition. No files changed.')
  source=list(csv.reader((loc/'de.csv').open(encoding='utf-8-sig',newline='')))
  if digest(json.dumps([r[2] for r in source[1:]],ensure_ascii=False,separators=(',',':')).encode())!=compatibility['source_catalog_sha256']:raise ValueError('Source catalog differs from the translated edition')
@@ -94,7 +94,7 @@ def build(game,out,allow_partial=False):
  compile_runtime(game,out)
  for name in ['OwlboyHebrew.dll','Owlboy.exe']:put(name,(out/name).read_bytes())
  plan={'schema':1,'id':'owlboy-hebrew','version':VERSION,'source_exe_sha256':digest((game/'Owlboy.exe').read_bytes()),'files':changes}
- (out/'plan.json').write_text(json.dumps(plan,indent=2)+'\n')
+ (out/'plan.json').write_text(json.dumps(plan,indent=2)+'\n',encoding='utf-8')
  # Kitor packages reuse the same explicit selective file plan on both platforms.
  files=[]
  for c in changes:
@@ -102,9 +102,9 @@ def build(game,out,allow_partial=False):
   if c['original_sha256']:item['original_sha256']=c['original_sha256']
   files.append(item)
  manifest={'schema_version':1,'scummvm_id':'owlboy','language':'he','version':VERSION,'filename':'owlboy-hebrew.zip','platforms':{'windows':{},'osx':{}},'files':files}
- (out/'patch.json').write_text(json.dumps(manifest,indent=2)+'\n')
+ (out/'patch.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
  report={'entries':len(clean),'translated_entries':len(clean)-len(unchanged),'unchanged_ids':unchanged,'unicode_layouts':count,'affected_files':len(changes),'missing_entries':len(required-set(translations)),'source_exe_sha256':plan['source_exe_sha256'],'status':'beta; full playthrough and Windows gameplay pending'}
- (out/'validation.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
+ (out/'validation.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8');print(json.dumps(report,indent=2))
  return report
 if __name__=='__main__':
  ap=argparse.ArgumentParser();ap.add_argument('--game',type=Path,required=True);ap.add_argument('--out',type=Path,default=ROOT/'build/package');ap.add_argument('--allow-partial',action='store_true',help=argparse.SUPPRESS);args=ap.parse_args()

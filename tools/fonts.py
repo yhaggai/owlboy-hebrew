@@ -3,7 +3,7 @@ import io,json
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont
 ROOT=Path(__file__).resolve().parents[1]
-PATTERNS=json.loads((ROOT/'fonts/hebrew-5x7.json').read_text())
+PATTERNS=json.loads((ROOT/'fonts/hebrew-5x7.json').read_text(encoding='utf-8'))
 def png(image):
  out=io.BytesIO();image.save(out,format='PNG');return out.getvalue()
 def glyph(c,height,factor=1):
@@ -16,7 +16,7 @@ def glyph(c,height,factor=1):
  return tile
 
 def extend(folder,required):
- name=folder.name;chars=(folder/'charmap.txt').read_text(encoding='utf-8');lines=(folder/'info.txt').read_text().splitlines()
+ name=folder.name;chars=(folder/'charmap.txt').read_text(encoding='utf-8');lines=(folder/'info.txt').read_text(encoding='utf-8').splitlines()
  if lines[0].startswith('OffsetY='):header=4
  else:header=3
  boxes=[list(map(int,r.split())) for r in lines[header].split(',')]
