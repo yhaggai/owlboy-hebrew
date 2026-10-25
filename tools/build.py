@@ -6,7 +6,7 @@ from layout import plain,write_layouts
 from fonts import extend,title,TITLES,png
 from PIL import Image,ImageDraw
 ROOT=Path(__file__).resolve().parents[1]
-VERSION='0.2.0-beta.1'
+VERSION='0.2.0-beta.2'
 TOKENS=re.compile(r'<[^>]*>|\[\d+\]')
 NORMALIZE=str.maketrans({'־':'-','–':'-','—':'-','…':'...','׳':"'",'״':'"','‘':"'",'’':"'",'“':'"','”':'"','\u00a0':' '})
 def digest(data):return hashlib.sha256(data).hexdigest()

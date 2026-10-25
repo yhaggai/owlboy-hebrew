@@ -13,5 +13,5 @@ if errorlevel 1 exit /b 1
 if errorlevel 1 exit /b 1
 .venv\Scripts\python.exe tools\build.py --game "%~1" --out build\package
 if errorlevel 1 exit /b 1
-.venv\Scripts\python.exe tools\manage.py install --package build\package --game "%~1" --recovery recovery\0.2.0-beta.1
+.venv\Scripts\python.exe tools\manage.py install --package build\package --game "%~1" --recovery recovery\0.2.0-beta.2
 exit /b %errorlevel%

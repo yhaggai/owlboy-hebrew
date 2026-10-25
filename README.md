@@ -75,7 +75,7 @@ From this repository, after installing `requirements.txt` into your environment:
 ```sh
 python tools/build.py --game '/path/to/resources' --out build/package
 python tools/manage.py install --package build/package \
-  --game '/path/to/resources' --recovery recovery/0.2.0-beta.1
+  --game '/path/to/resources' --recovery recovery/0.2.0-beta.2
 ```
 
 `build/package/patch.json` is also a Kitor lifecycle manifest for both `osx` and
@@ -88,7 +88,7 @@ Select English in Owlboy, exit the game, then run:
 
 ```sh
 python tools/manage.py uninstall \
-  --journal recovery/0.2.0-beta.1/journal.json --game '/path/to/resources'
+  --journal recovery/0.2.0-beta.2/journal.json --game '/path/to/resources'
 ```
 
 Only files recorded by this installation are restored or removed. Later-edited

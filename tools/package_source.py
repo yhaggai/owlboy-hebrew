@@ -17,7 +17,7 @@ for name in files:
         raise ValueError('Refusing symlink in source package: ' + name)
 (ROOT / 'dist').mkdir(exist_ok=True)
 for platform in ['macos', 'windows']:
-    path = ROOT / 'dist' / f'owlboy-hebrew-0.2.0-beta.1-{platform}-source.zip'
+    path = ROOT / 'dist' / f'owlboy-hebrew-0.2.0-beta.2-{platform}-source.zip'
     with zipfile.ZipFile(path, 'w', zipfile.ZIP_DEFLATED) as archive:
         for name in files:
             archive.write(ROOT / name, 'owlboy-hebrew/' + name)
