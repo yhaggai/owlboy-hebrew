@@ -135,3 +135,12 @@ property of their respective owners.
 Build dependencies: [python-bidi](https://pypi.org/project/python-bidi/),
 [Pillow](https://pypi.org/project/Pillow/), and
 [Mono.Cecil](https://www.nuget.org/packages/Mono.Cecil).
+
+## Optional niqqud edition (experimental)
+
+The separate `hn` language reuses the existing Hebrew translation and adds vowel
+marks. It does not replace regular `he`. The pointed catalog is in
+`translations/niqqud/`; local Nakdimon drafting is followed by targeted review
+against the original English. This remains a beta, not exhaustive linguistic
+proofreading. See [niqqud instructions](docs/niqqud-trial.md) for the add-on
+build and selective removal procedure.
